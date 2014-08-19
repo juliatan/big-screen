@@ -20,29 +20,35 @@ describe Theatre do
     expect(theatre.reserved_bookings.count).to eq 1
   end
 
+  it 'knows all of the first seats of each reserved booking' do
+    theatre.process(booking1)
+    theatre.process(booking2)
+    expect(theatre.first_seats_reserved).to eq [seat1, seat3]
+  end
+
   it 'knows all of the last seats of each reserved booking' do
     theatre.process(booking1)
     theatre.process(booking2)
-    expect(theatre.last_seats_reserved).to eq ["1:4", "2:4"]
+    expect(theatre.last_seats_reserved).to eq [seat2, seat4]
   end
 
   context 'adds discards bookings if' do
 
     let(:seat5) { Seat.new(1, 4) }
     let(:seat6) { Seat.new(1, 6) }
-    let(:booking2) { Booking.new(seat5) }
-    let(:booking3) { Booking.new(seat6) }
+    let(:booking3) { Booking.new(seat5) }
+    let(:booking4) { Booking.new(seat6) }
 
     it 'any of the requested seats is in the reserve list' do
       theatre.process(booking1)
-      theatre.process(booking2)
+      theatre.process(booking3)
       expect(theatre.reserved_seats.count).to eq 3
       expect(theatre.discarded_bookings.count).to eq 1
     end
 
     # it 'a single seat gap is left' do
     #   theatre.process(booking1)
-    #   theatre.process(booking3)
+    #   theatre.process(booking4)
     #   expect(theatre.reserved_seats.count).to eq 3
     #   expect(theatre.discarded_bookings.count).to eq 1
     # end
