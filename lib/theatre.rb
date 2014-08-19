@@ -29,6 +29,15 @@ class Theatre
     (reserved_seats & booking.requested_seats).count > 0
   end
 
+  def gap_between_bookings(booking1, booking2)
+    if booking1.finish_seat.number < booking2.start_seat.number
+      # need to subtract 1 because seat numbers are inclusive
+      booking2.start_seat.number - booking1.finish_seat.number - 1
+    else
+      booking1.start_seat.number - booking2.finish_seat.number - 1
+    end
+  end
+
   # def reservation_in_existing_row?(booking)
   #   @reserved_bookings.any? do |reserved_booking|
   #     reserved_booking.start_seat.row == booking.start_seat.row
