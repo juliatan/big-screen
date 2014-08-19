@@ -22,5 +22,3 @@ require './lib/theatre'
 #test no single gaps
 @seat6 = Seat.new(0,6)
 @booking4 = Booking.new(@seat6)
-
-

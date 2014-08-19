@@ -5,7 +5,6 @@ class Booking
   MAX_SEATS_PER_BOOKING = 6
   ZERO_INDEXED = 1
   NO_OF_SEATS_IN_ROW = 50
-  NO_OF_ROWS = 100
 
   def initialize(start_seat, finish_seat=start_seat)
     @start_seat = start_seat
