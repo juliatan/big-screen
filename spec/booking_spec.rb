@@ -19,5 +19,12 @@ describe Booking do
     end
   end
 
+  context 'when validating' do
+    it 'has one seat' do
+      expect(Booking.new(seat1).seat_count).to eq 1
+    end
+
+  end
+
 
 end
