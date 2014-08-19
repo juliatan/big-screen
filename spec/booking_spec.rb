@@ -76,8 +76,8 @@ describe Booking do
     end
 
     it 'knows if it is located one seat from aisle' do
-      expect(Booking.new(seat5).next_to_aisle?).to be true
-      expect(Booking.new(seat6).next_to_aisle?).to be true
+      expect(Booking.new(seat5).one_seat_from_aisle?).to be true
+      expect(Booking.new(seat6).one_seat_from_aisle?).to be true
     end
   end
 

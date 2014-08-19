@@ -59,7 +59,7 @@ class Theatre
   def false_gap_of_one?(booking)
     if gap_of_one?(booking)
       ( reserved_seats & [booking.next_seat, booking.previous_seat] ).count > 0
-    elsif booking.next_to_aisle?
+    elsif booking.one_seat_from_aisle?
       ( reserved_seats & [booking.next_seat, booking.previous_seat] ).count > 0
     else
       return true
