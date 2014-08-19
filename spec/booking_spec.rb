@@ -49,6 +49,31 @@ describe Booking do
     end
   end
 
+  context 'when initialized' do
+
+    let(:seat1) { Seat.new(1, 2) }
+    let(:seat2) { Seat.new(1, 3) }
+    let(:seat3) { Seat.new(1, 0) }
+    let(:seat4) { Seat.new(1, 49) }
+    let(:booking) { Booking.new(seat1, seat2)}
+
+    it 'knows the adjacent seat before its first seat' do
+      expect(booking.previous_seat).to eq '1:1'
+    end
+
+    it 'gives n/a if first seat is at index 0' do
+      expect(Booking.new(seat3).previous_seat).to eq 'N/A'
+    end
+
+    it 'knows the adjacent seat after its last seat' do
+      expect(booking.next_seat).to eq '1:4'
+    end
+
+    it 'gives n/a if finish seat is at index 49' do
+      expect(Booking.new(seat4).next_seat).to eq 'N/A'
+    end
+  end
+
   context 'when validating' do
 
     # remember that rows and seat numbers are 0-indexed
