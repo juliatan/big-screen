@@ -7,7 +7,6 @@ describe Booking do
     let(:seat1) { Seat.new(1, 2) }
     let(:seat2) { Seat.new(1, 3) }
     let(:booking) { Booking.new(seat1, seat2)}
-    # 0,77:23,77:24
 
     it 'has a starting seat' do
       expect(booking.start_seat.row).to eq 1
@@ -26,6 +25,10 @@ describe Booking do
     it 'can have more than one seat' do
       expect(Booking.new(seat1, seat2).seat_count).to eq 2
     end
+
+    it 'has a valid status if it is valid' do
+      expect(booking.status).to eq 'valid'
+    end
   end
 
   context 'when validating' do
@@ -39,20 +42,20 @@ describe Booking do
     let(:seat6) { Seat.new(1, 2) }
 
     it 'cannot have more than five seats' do
-      expect{ Booking.new(seat1, seat2) }.to raise_error
+      expect(Booking.new(seat1, seat2).status).to eq 'invalid'
     end
 
     it 'must be in the same row' do
-      expect{ Booking.new(seat1, seat3) }.to raise_error
+      expect(Booking.new(seat1, seat3).status).to eq 'invalid'
     end
 
     context 'cannot leave a single seat gap' do
       it 'cannot start on second seat in any row' do
-        expect{ Booking.new(seat4) }.to raise_error
+        expect(Booking.new(seat4).status).to eq 'invalid'
       end
 
       it 'cannot end on second last seat in any row' do
-        expect{ Booking.new(seat5) }.to raise_error
+        expect(Booking.new(seat5).status).to eq 'invalid'
       end
     end
   end

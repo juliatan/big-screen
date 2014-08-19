@@ -1,6 +1,6 @@
 class Booking
 
-  attr_reader :start_seat, :finish_seat
+  attr_reader :start_seat, :finish_seat, :status
   
   MAX_SEATS_PER_BOOKING = 6
   ZERO_INDEXED = 1
@@ -10,15 +10,21 @@ class Booking
     @start_seat = start_seat
     @finish_seat = finish_seat
     add_to_requested_seats
-    raise 'Invalid booking request' unless valid?
-  end
 
-  def seat_count
-    finish_seat.number - start_seat.number + 1
+    if valid?
+      @status = 'valid'
+    else
+      @status = 'invalid'
+    end
+    # raise 'Invalid booking request' unless valid?
   end
 
   def valid?
     less_than_6_seats? && same_row? && no_single_seat?
+  end
+
+  def seat_count
+    finish_seat.number - start_seat.number + 1
   end
 
   def less_than_6_seats?
