@@ -22,8 +22,8 @@ class Theatre
     end
   end
 
-  def seat_taken?(booking)
-    (reserved_seats & booking.requested_seats).count > 0
+  def seat_taken?(array_of_seats)
+    (reserved_seats & array_of_seats).count > 0
   end
 
   def same_row?(booking1, booking2)
@@ -35,9 +35,6 @@ class Theatre
       # need to subtract 1 because seat numbers are inclusive
       booking2.start_seat.number - booking1.finish_seat.number - 1
     else
-    # end
-
-    # if booking1.start_seat.number > booking2.finish_seat.number
       booking1.start_seat.number - booking2.finish_seat.number - 1
     end
   end
@@ -58,9 +55,9 @@ class Theatre
 
   def false_gap_of_one?(booking)
     if gap_of_one?(booking)
-      ( reserved_seats & [booking.next_seat, booking.previous_seat] ).count > 0
+      seat_taken?(booking.adjacent_seats)
     elsif booking.one_seat_from_aisle?
-      ( reserved_seats & [booking.next_seat, booking.previous_seat] ).count > 0
+      seat_taken?(booking.adjacent_seats)
     else
       return true
     end
@@ -72,7 +69,7 @@ class Theatre
 
   def valid?(booking)
     valid_booking_seats?(booking) &&
-    !seat_taken?(booking) &&
+    !seat_taken?(booking.requested_seats) &&
     false_gap_of_one?(booking)
   end
 

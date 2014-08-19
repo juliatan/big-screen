@@ -4,28 +4,28 @@ require './lib/theatre'
 require './lib/cinema'
 
 @cinema = Cinema.new
-@theatre = Theatre.new
+@theatre1 = Theatre.new
+@theatre2 = Theatre.new
 
-# @seat1 = Seat.new(0,0)
-# @seat2 = Seat.new(0,1)
-# @seat3 = Seat.new(0,2)
-# @seat4 = Seat.new(0,4)
+puts 'Loading SAMPLE booking requests'
 
-# @booking1 = Booking.new(@seat1, @seat2)
-# @booking2 = Booking.new(@seat3, @seat4)
+@cinema.load_booking_requests('sample_booking_requests.txt', @theatre1)
+puts '*' * 35
 
-# @theatre.process(@booking1)
-# @theatre.process(@booking2)
+puts "Discarded bookings: #{@theatre1.discarded_bookings.count}"
+puts "Sucessful bookings: #{@theatre1.reserved_bookings.count}"
+puts "Total bookings in file: #{@theatre1.bookings.count}"
 
-# # test no overlapping seats
-# @seat5 = Seat.new(0,0)
-# @booking3 = Booking.new(@seat5)
+puts '-' * 35
+puts "\n"
 
-# #test no single gaps
-# @seat6 = Seat.new(0,6)
-# @booking4 = Booking.new(@seat6)
+puts 'Now loading ACTUAL booking requests'
 
-@cinema.load_booking_requests('sample_booking_requests.txt', @theatre)
-puts "Discarded: #{@theatre.discarded_bookings.count}"
-puts "Reserved: #{@theatre.reserved_bookings.count}"
-p @theatre.discarded_bookings
+@cinema.load_booking_requests('booking_requests.txt', @theatre2)
+puts '*' * 35
+
+puts "Discarded bookings: #{@theatre2.discarded_bookings.count}"
+puts "Sucessful bookings: #{@theatre2.reserved_bookings.count}"
+puts "Total bookings in file: #{@theatre2.bookings.count}"
+
+puts '-' * 35

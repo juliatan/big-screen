@@ -67,6 +67,10 @@ class Booking
     end
   end
 
+  def adjacent_seats
+    [previous_seat, next_seat]
+  end
+
   def one_seat_from_aisle?
     ( start_seat.number == 1 || finish_seat.number == 48 ) ? true : false
   end
