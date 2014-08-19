@@ -23,6 +23,12 @@ describe Theatre do
     expect(theatre.reserved_bookings.count).to eq 1
   end
 
+  it 'knows the total number of bookings that have been made' do
+    theatre.process(booking1)
+    theatre.process(booking2)
+    expect(theatre.bookings.count).to eq 2
+  end
+
   it 'knows whether two bookings are in the same row' do
     theatre.process(booking1)
     theatre.process(booking3)
@@ -35,7 +41,7 @@ describe Theatre do
     expect(theatre.gap_between_bookings(booking1, booking3)).to eq 2
   end
 
-  context 'adds discards bookings if' do
+  context 'adds to discarded bookings if' do
 
     let(:seat7) { Seat.new(1, 4) }
     let(:seat8) { Seat.new(1, 6) }

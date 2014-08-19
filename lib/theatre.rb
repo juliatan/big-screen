@@ -1,14 +1,16 @@
 class Theatre
 
-  attr_reader :reserved_seats, :reserved_bookings, :discarded_bookings
+  attr_reader :reserved_seats, :bookings, :reserved_bookings, :discarded_bookings
 
   def initialize
     @reserved_seats = []
+    @bookings = []
     @reserved_bookings = []
     @discarded_bookings = []
   end
 
   def process(booking)
+    bookings << booking
     if valid? booking
       booking.requested_seats.each do |requested_seat|
         reserved_seats << requested_seat
