@@ -42,6 +42,20 @@ class Theatre
     end
   end
 
+  def gap_of_one?(booking)
+    gaps = []
+
+    reserved_bookings.each do |reserved_booking|
+      if same_row?(booking, reserved_booking)
+        gaps << gap_between_bookings(booking, reserved_booking)
+      else
+        next
+      end
+    end
+
+    gaps.include? 1
+  end
+
   # def reservation_in_existing_row?(booking)
   #   @reserved_bookings.any? do |reserved_booking|
   #     reserved_booking.start_seat.row == booking.start_seat.row
@@ -68,7 +82,7 @@ class Theatre
   # end
 
   def valid?(booking)
-    !seat_taken?(booking)
+    !seat_taken?(booking) && !gap_of_one?(booking)
   end
 
 end

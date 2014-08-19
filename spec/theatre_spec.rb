@@ -61,12 +61,12 @@ describe Theatre do
       expect(theatre.discarded_bookings.count).to eq 1
     end
 
-    # it 'a single seat gap is left' do
-    #   theatre.process(booking1)
-    #   theatre.process(booking5)
-    #   expect(theatre.reserved_seats.count).to eq 3
-    #   expect(theatre.discarded_bookings.count).to eq 1
-    # end
+    it 'a single seat gap is left within a row' do
+      theatre.process(booking1)
+      theatre.process(booking5)
+      expect(theatre.reserved_seats.count).to eq 3
+      expect(theatre.discarded_bookings.count).to eq 1
+    end
   end
 
 end
