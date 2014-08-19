@@ -49,7 +49,7 @@ describe Booking do
     end
   end
 
-  context 'when initialized' do
+  context 'knows its boundaries' do
 
     let(:seat1) { Seat.new(1, 2) }
     let(:seat2) { Seat.new(1, 3) }
