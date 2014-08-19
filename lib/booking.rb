@@ -59,6 +59,14 @@ class Booking
     end
   end
 
+  def next_seat
+    if finish_seat.number == 49
+      "N/A"
+    else
+      finish_seat.row.to_s + ':' + (finish_seat.number + 1).to_s
+    end
+  end
+
   def requested_seats
     @requested_seats ||= []
   end
