@@ -30,9 +30,11 @@ describe Booking do
 
   context 'when validating' do
 
+    # remember than rows and seat numbers are 0-indexed
     let(:seat1) { Seat.new(1, 2) }
     let(:seat2) { Seat.new(1, 7) }
     let(:seat3) { Seat.new(2, 3) }
+    let(:seat4) { Seat.new(0, 1) }
 
     it 'cannot have more than five seats' do
       expect{ Booking.new(seat1, seat2) }.to raise_error
@@ -40,6 +42,10 @@ describe Booking do
 
     it 'must be in the same row' do
       expect{ Booking.new(seat1, seat3) }.to raise_error
+    end
+
+    it 'cannot start on second seat in any row' do
+      expect{ Booking.new(seat4) }.to raise_error
     end
 
   end

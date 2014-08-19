@@ -14,7 +14,7 @@ class Booking
   end
 
   def valid?
-    less_than_6_seats? && same_row?
+    less_than_6_seats? && same_row? && no_single_seat?
   end
 
   def less_than_6_seats?
@@ -23,6 +23,10 @@ class Booking
 
   def same_row?
     start_seat.row == finish_seat.row
+  end
+
+  def no_single_seat?
+    start_seat.number != 1
   end
 
 end
