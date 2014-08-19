@@ -12,6 +12,11 @@ describe Theatre do
     expect(theatre.reserved_seats.count).to eq 3
   end
 
+  it 'knows the number of bookings it has reserved' do
+    theatre.process(booking1)
+    expect(theatre.reserved_bookings.count).to eq 1
+  end
+
   context 'adds discards bookings if' do
 
     let(:seat3) { Seat.new(1, 4) }
@@ -26,12 +31,12 @@ describe Theatre do
       expect(theatre.discarded_bookings.count).to eq 1
     end
 
-    it 'a single seat gap is left' do
-      theatre.process(booking1)
-      theatre.process(booking3)
-      expect(theatre.reserved_seats.count).to eq 3
-      expect(theatre.discarded_bookings.count).to eq 1
-    end
+    # it 'a single seat gap is left' do
+    #   theatre.process(booking1)
+    #   theatre.process(booking3)
+    #   expect(theatre.reserved_seats.count).to eq 3
+    #   expect(theatre.discarded_bookings.count).to eq 1
+    # end
   end
 
 end
