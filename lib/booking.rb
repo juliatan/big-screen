@@ -14,7 +14,15 @@ class Booking
   end
 
   def valid?
+    less_than_6_seats? && same_row?
+  end
+
+  def less_than_6_seats?
     seat_count < MAX_SEATS
+  end
+
+  def same_row?
+    start_seat.row == finish_seat.row
   end
 
 end
