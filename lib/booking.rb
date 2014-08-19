@@ -40,4 +40,11 @@ class Booking
     finish_seat.number != NO_OF_SEATS_IN_ROW - ZERO_INDEXED - 1
   end
 
+  def reserved_seats
+    @reserved_seats ||= []
+    @reserved_seats << start_seat.row.to_s+':'+start_seat.number.to_s
+    @reserved_seats << finish_seat.row.to_s+':'+finish_seat.number.to_s
+    @reserved_seats.uniq!
+  end
+
 end

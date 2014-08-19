@@ -30,7 +30,7 @@ describe Booking do
 
   context 'when validating' do
 
-    # remember than rows and seat numbers are 0-indexed
+    # remember that rows and seat numbers are 0-indexed
     let(:seat1) { Seat.new(1, 2) }
     let(:seat2) { Seat.new(1, 7) }
     let(:seat3) { Seat.new(2, 3) }
@@ -53,10 +53,22 @@ describe Booking do
       it 'cannot end on second last seat in any row' do
         expect{ Booking.new(seat5) }.to raise_error
       end
-
     end
-
   end
+
+  context 'if valid' do
+
+    let(:seat1) { Seat.new(1, 2) }
+    let(:seat2) { Seat.new(1, 3) }
+    let(:booking1) { Booking.new(seat1)}
+
+    it 'seats are reserved' do
+      Booking.new(seat1)
+      expect(booking1.reserved_seats.count).to eq 1
+    end
+  end
+
+
 
 
 end
