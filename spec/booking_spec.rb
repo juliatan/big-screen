@@ -55,6 +55,8 @@ describe Booking do
     let(:seat2) { Seat.new(1, 3) }
     let(:seat3) { Seat.new(1, 0) }
     let(:seat4) { Seat.new(1, 49) }
+    let(:seat5) { Seat.new(1, 1) }
+    let(:seat6) { Seat.new(1, 48) }
     let(:booking) { Booking.new(seat1, seat2)}
 
     it 'knows the adjacent seat before its first seat' do
@@ -72,6 +74,11 @@ describe Booking do
     it 'gives n/a if finish seat is at index 49' do
       expect(Booking.new(seat4).next_seat).to eq 'N/A'
     end
+
+    it 'knows if it is located one seat from aisle' do
+      expect(Booking.new(seat5).next_to_aisle?).to be true
+      expect(Booking.new(seat6).next_to_aisle?).to be true
+    end
   end
 
   context 'when validating' do
@@ -80,9 +87,6 @@ describe Booking do
     let(:seat1) { Seat.new(1, 2) }
     let(:seat2) { Seat.new(1, 7) }
     let(:seat3) { Seat.new(2, 3) }
-    let(:seat4) { Seat.new(0, 1) }
-    let(:seat5) { Seat.new(0, 48) }
-    let(:seat6) { Seat.new(1, 2) }
 
     it 'cannot have more than five seats' do
       expect(Booking.new(seat1, seat2).status).to eq 'invalid'
@@ -92,15 +96,6 @@ describe Booking do
       expect(Booking.new(seat1, seat3).status).to eq 'invalid'
     end
 
-    context 'cannot leave a single seat gap' do
-      it 'cannot start on second seat in any row' do
-        expect(Booking.new(seat4).status).to eq 'invalid'
-      end
-
-      it 'cannot end on second last seat in any row' do
-        expect(Booking.new(seat5).status).to eq 'invalid'
-      end
-    end
   end
 
   context 'when making seat requests' do

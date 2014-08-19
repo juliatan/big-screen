@@ -40,8 +40,8 @@ class Booking
   end
 
   def no_single_seat?
-    no_single_seat_at_start_or_end_of_row?
-    # true
+    # no_single_seat_at_start_or_end_of_row?
+    true
   end
 
   def no_single_seat_at_start_or_end_of_row?
@@ -65,6 +65,10 @@ class Booking
     else
       finish_seat.row.to_s + ':' + (finish_seat.number + 1).to_s
     end
+  end
+
+  def next_to_aisle?
+    ( start_seat.number == 1 || finish_seat.number == 48 ) ? true : false
   end
 
   def requested_seats
