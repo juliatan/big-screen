@@ -9,6 +9,9 @@ describe Cinema do
     subject.load_booking_requests('sample_booking_requests.txt', theatre)
   end
 
-
+  it 'can create bookings from the loaded file' do
+    subject.load_booking_requests('sample_booking_requests.txt', theatre)
+    expect(theatre.bookings.count).to eq 500
+  end
 
 end
