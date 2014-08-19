@@ -20,8 +20,19 @@ describe Booking do
   end
 
   context 'when validating' do
+
+    let(:seat3) { Seat.new(1, 7) }
+
     it 'has one seat' do
       expect(Booking.new(seat1).seat_count).to eq 1
+    end
+
+    it 'can have more than one seat' do
+      expect(Booking.new(seat1, seat2).seat_count).to eq 2
+    end
+
+    it 'cannot have more than five seats' do
+      expect{ Booking.new(seat1, seat3) }.to raise_error
     end
 
   end
