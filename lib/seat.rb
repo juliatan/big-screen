@@ -5,7 +5,6 @@ class Seat
   def initialize(row, number)
     @row = row
     @number = number
-    @status = 'unbooked'
   end
 
 end
