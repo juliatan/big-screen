@@ -41,7 +41,7 @@ describe Theatre do
     expect(theatre.gap_between_bookings(booking1, booking3)).to eq 2
   end
 
-  context 'adds to discarded bookings if' do
+  context 'adds to discarded bookings' do
 
     let(:seat7) { Seat.new(1, 4) }
     let(:seat8) { Seat.new(1, 6) }
@@ -49,24 +49,30 @@ describe Theatre do
     let(:booking5) { Booking.new(seat7) }
     let(:booking6) { Booking.new(seat8) }
 
-    it 'booking has an invalid status' do
+    it 'when booking has an invalid status' do
       theatre.process(booking4)
       expect(theatre.reserved_seats.count).to eq 0
       expect(theatre.discarded_bookings.count).to eq 1
     end
 
-    it 'any of the requested seats is in the reserve list' do
+    it 'when any of the requested seats is in the reserve list' do
       theatre.process(booking1)
       theatre.process(booking5)
       expect(theatre.reserved_seats.count).to eq 3
       expect(theatre.discarded_bookings.count).to eq 1
     end
 
-    it 'a single seat gap is left within a row' do
+    it 'when a single seat gap is left within a row' do
       theatre.process(booking1)
       theatre.process(booking6)
       expect(theatre.reserved_seats.count).to eq 3
       expect(theatre.discarded_bookings.count).to eq 1
+    end
+
+    it 'and changes booking status to invalid' do
+      theatre.process(booking1)
+      theatre.process(booking6)
+      expect(booking6.status).to eq 'invalid'
     end
   end
 

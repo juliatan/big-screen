@@ -23,6 +23,10 @@ class Booking
     less_than_6_seats? && same_row? && no_single_seat?
   end
 
+  def invalid!
+    @status = 'invalid'
+  end
+
   def seat_count
     finish_seat.number - start_seat.number + 1
   end

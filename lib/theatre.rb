@@ -18,6 +18,7 @@ class Theatre
       reserved_bookings << booking
     else
       # don't need individual seat numbers, only need to count # of bookings
+      booking.invalid!
       discarded_bookings << booking
     end
   end
