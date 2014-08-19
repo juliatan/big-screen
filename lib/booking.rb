@@ -10,6 +10,7 @@ class Booking
   def initialize(start_seat, finish_seat=start_seat)
     @start_seat = start_seat
     @finish_seat = finish_seat
+    add_to_reserve_list
     raise 'Invalid booking request' unless valid?
   end
 
