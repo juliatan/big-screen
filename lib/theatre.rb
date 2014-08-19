@@ -53,8 +53,14 @@ class Theatre
     gaps.include? 1
   end
 
+  def valid_booking_seats?(booking)
+    booking.status == 'valid'
+  end
+
   def valid?(booking)
-    !seat_taken?(booking) && !gap_of_one?(booking)
+    valid_booking_seats?(booking) &&
+    !seat_taken?(booking) &&
+    !gap_of_one?(booking)
   end
 
 end

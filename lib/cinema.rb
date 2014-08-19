@@ -1,7 +1,7 @@
 class Cinema
 
   def load_booking_requests(filename, theatre)
-    contents = File.open(filename, 'r').read
+    contents = File.open(filename, 'r')
     contents.each_line do |line| # line = "(0,89:13,89:13)"
       seats = line.scan(/,(.+)\)/).flatten[0].split(',') # ["89:13", "89:13"]
       start_seat_row = seats[0].match(/(.*)\:/) && $1 # "89"

@@ -45,19 +45,26 @@ describe Theatre do
 
     let(:seat7) { Seat.new(1, 4) }
     let(:seat8) { Seat.new(1, 6) }
-    let(:booking4) { Booking.new(seat7) }
-    let(:booking5) { Booking.new(seat8) }
+    let(:booking4) { Booking.new(seat3, seat7) }
+    let(:booking5) { Booking.new(seat7) }
+    let(:booking6) { Booking.new(seat8) }
+
+    it 'booking has an invalid status' do
+      theatre.process(booking4)
+      expect(theatre.reserved_seats.count).to eq 0
+      expect(theatre.discarded_bookings.count).to eq 1
+    end
 
     it 'any of the requested seats is in the reserve list' do
       theatre.process(booking1)
-      theatre.process(booking4)
+      theatre.process(booking5)
       expect(theatre.reserved_seats.count).to eq 3
       expect(theatre.discarded_bookings.count).to eq 1
     end
 
     it 'a single seat gap is left within a row' do
       theatre.process(booking1)
-      theatre.process(booking5)
+      theatre.process(booking6)
       expect(theatre.reserved_seats.count).to eq 3
       expect(theatre.discarded_bookings.count).to eq 1
     end
