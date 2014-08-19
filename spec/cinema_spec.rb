@@ -14,4 +14,8 @@ describe Cinema do
     expect(theatre.bookings.count).to eq 500
   end
 
+  # it 'runs the sample first correctly' do
+    
+  # end
+
 end
