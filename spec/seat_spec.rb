@@ -13,6 +13,12 @@ describe Seat do
     it 'has a number' do
       expect(seat.number).to eq 2
     end
+
+    it 'has a status of unbooked' do
+      expect(seat.status).to eq 'unbooked'
+    end
   end
+
+
 
 end
