@@ -26,3 +26,6 @@ require './lib/cinema'
 # @booking4 = Booking.new(@seat6)
 
 @cinema.load_booking_requests('sample_booking_requests.txt', @theatre)
+puts "Discarded: #{@theatre.discarded_bookings.count}"
+puts "Reserved: #{@theatre.reserved_bookings.count}"
+p @theatre.discarded_bookings

@@ -6,7 +6,9 @@ describe Booking do
 
     let(:seat1) { Seat.new(1, 2) }
     let(:seat2) { Seat.new(1, 3) }
+    let(:seat3) { Seat.new(1, 0) }
     let(:booking) { Booking.new(seat1, seat2)}
+    let(:booking2) { Booking.new(seat3) }
 
     it 'has a starting seat' do
       expect(booking.start_seat.row).to eq 1
@@ -28,6 +30,14 @@ describe Booking do
 
     it 'has a valid status if it is valid' do
       expect(booking.status).to eq 'valid'
+    end
+
+    it 'knows the adjacent seat before its first seat' do
+      expect(booking.previous_seat).to eq '1:1'
+    end
+
+    it 'gives n/a if first seat is at index 0' do
+      expect(booking2.previous_seat).to eq 'N/A'
     end
   end
 
@@ -74,6 +84,5 @@ describe Booking do
       booking = Booking.new(seat1, seat2)
       expect(booking.requested_seats.count).to eq 3
     end
-
   end
 end

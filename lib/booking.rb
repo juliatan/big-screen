@@ -1,6 +1,7 @@
 class Booking
 
-  attr_reader :start_seat, :finish_seat, :status
+  attr_reader :start_seat, :finish_seat
+  attr_accessor :status
   
   MAX_SEATS_PER_BOOKING = 6
   ZERO_INDEXED = 1
@@ -9,14 +10,13 @@ class Booking
   def initialize(start_seat, finish_seat=start_seat)
     @start_seat = start_seat
     @finish_seat = finish_seat
-    add_to_requested_seats
 
     if valid?
+      add_to_requested_seats
       @status = 'valid'
     else
       @status = 'invalid'
     end
-    # raise 'Invalid booking request' unless valid?
   end
 
   def valid?
@@ -40,7 +40,8 @@ class Booking
   end
 
   def no_single_seat?
-    no_single_seat_at_start_or_end_of_row?
+    # no_single_seat_at_start_or_end_of_row?
+    true
   end
 
   def no_single_seat_at_start_or_end_of_row?
@@ -48,6 +49,14 @@ class Booking
     start_seat.number != ZERO_INDEXED &&
     # cannot end at second-last seat in row
     finish_seat.number != NO_OF_SEATS_IN_ROW - ZERO_INDEXED - 1
+  end
+
+  def previous_seat
+    if start_seat.number == 0
+      "N/A"
+    else
+      start_seat.row.to_s + ':' + (start_seat.number - 1).to_s
+    end
   end
 
   def requested_seats

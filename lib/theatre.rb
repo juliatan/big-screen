@@ -17,7 +17,7 @@ class Theatre
       end
       reserved_bookings << booking
     else
-      booking.invalid!
+      # booking.invalid!
       discarded_bookings << booking
     end
   end
@@ -35,6 +35,9 @@ class Theatre
       # need to subtract 1 because seat numbers are inclusive
       booking2.start_seat.number - booking1.finish_seat.number - 1
     else
+    # end
+
+    # if booking1.start_seat.number > booking2.finish_seat.number
       booking1.start_seat.number - booking2.finish_seat.number - 1
     end
   end
@@ -52,6 +55,12 @@ class Theatre
 
     gaps.include? 1
   end
+
+  # def confirmed_gap_of_one?(booking)
+  #   if gap_of_one?(booking)
+  #     reserved_seats.any? do |reserved_seat|
+  #       reserved_seat == booking.row.to_s + ':' + booking.
+  # end
 
   def valid_booking_seats?(booking)
     booking.status == 'valid'
