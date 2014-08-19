@@ -35,6 +35,7 @@ describe Booking do
     let(:seat2) { Seat.new(1, 7) }
     let(:seat3) { Seat.new(2, 3) }
     let(:seat4) { Seat.new(0, 1) }
+    let(:seat5) { Seat.new(0, 48) }
 
     it 'cannot have more than five seats' do
       expect{ Booking.new(seat1, seat2) }.to raise_error
@@ -44,8 +45,15 @@ describe Booking do
       expect{ Booking.new(seat1, seat3) }.to raise_error
     end
 
-    it 'cannot start on second seat in any row' do
-      expect{ Booking.new(seat4) }.to raise_error
+    context 'cannot leave a single seat gap' do
+      it 'cannot start on second seat in any row' do
+        expect{ Booking.new(seat4) }.to raise_error
+      end
+
+      it 'cannot end on second last seat in any row' do
+        expect{ Booking.new(seat5) }.to raise_error
+      end
+
     end
 
   end
