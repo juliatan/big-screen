@@ -35,6 +35,12 @@ describe Theatre do
     expect(theatre.last_seats_reserved).to eq [seat2, seat4]
   end
 
+  it 'knows whether two bookings are in the same row' do
+    theatre.process(booking1)
+    theatre.process(booking3)
+    expect(theatre.same_row?(booking1, booking3)).to be true
+  end
+
   it 'knows the size of gap between two bookings in the same row' do
     theatre.process(booking1)
     theatre.process(booking3)
