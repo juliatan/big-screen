@@ -2,31 +2,22 @@ require 'booking'
 
 describe Booking do
 
-  let(:seat1) { Seat.new(1, 1) }
-  let(:booking) { Booking.new(0, 5, 6, 5, 7)}
+  let(:seat1) { Seat.new(1, 2) }
+  let(:seat2) { Seat.new(1, 3)}
+  let(:booking) { Booking.new(seat1, seat2)}
   # 0,77:23,77:24
 
   context 'when initialized' do
-    it 'has a unique id' do
-      expect(booking.id).to eq 0
-    end
-
-    it 'has a starting row' do
-      expect(booking.start_row).to eq 5
-    end
-
     it 'has a starting seat' do
-      expect(booking.start_seat).to eq 6
-    end
-
-    it 'can have a finishing row' do
-      expect(booking.finish_row).to eq 5
+      expect(booking.start_seat.row).to eq 1
+      expect(booking.start_seat.number).to eq 2
     end
 
     it 'can have a finishing seat' do
-      expect(booking.finish_seat).to eq 7
+      expect(booking.finish_seat.row).to eq 1
+      expect(booking.finish_seat.number).to eq 3
     end
   end
 
-  
+
 end
