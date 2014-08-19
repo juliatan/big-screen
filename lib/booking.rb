@@ -10,7 +10,7 @@ class Booking
   def initialize(start_seat, finish_seat=start_seat)
     @start_seat = start_seat
     @finish_seat = finish_seat
-    add_to_reserve_list
+    add_to_requested_seats
     raise 'Invalid booking request' unless valid?
   end
 
@@ -41,13 +41,13 @@ class Booking
     finish_seat.number != NO_OF_SEATS_IN_ROW - ZERO_INDEXED - 1
   end
 
-  def reserved_seats
-    @reserved_seats ||= []
+  def requested_seats
+    @requested_seats ||= []
   end
 
-  def add_to_reserve_list
+  def add_to_requested_seats
     (start_seat.number).upto(finish_seat.number).each do |n|
-      reserved_seats << start_seat.row.to_s + ":" + n.to_s
+      requested_seats << start_seat.row.to_s + ":" + n.to_s
     end
   end
 

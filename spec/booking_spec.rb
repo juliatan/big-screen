@@ -36,6 +36,7 @@ describe Booking do
     let(:seat3) { Seat.new(2, 3) }
     let(:seat4) { Seat.new(0, 1) }
     let(:seat5) { Seat.new(0, 48) }
+    let(:seat6) { Seat.new(1, 2) }
 
     it 'cannot have more than five seats' do
       expect{ Booking.new(seat1, seat2) }.to raise_error
@@ -44,11 +45,6 @@ describe Booking do
     it 'must be in the same row' do
       expect{ Booking.new(seat1, seat3) }.to raise_error
     end
-
-    # it 'cannot contain a seat that is reserved' do
-    #   Booking.new(seat1)
-    #   expect{ Booking.new(seat1, seat3) }.to raise_error
-    # end
 
     context 'cannot leave a single seat gap' do
       it 'cannot start on second seat in any row' do
@@ -61,26 +57,20 @@ describe Booking do
     end
   end
 
-  context 'if valid' do
+  context 'when making seat requests' do
 
     let(:seat1) { Seat.new(1, 2) }
     let(:seat2) { Seat.new(1, 4) }
 
-    it 'one seat can be reserved' do
+    it 'one seat can be requested' do
       booking = Booking.new(seat1)
-      # booking.add_to_reserve_list
-      expect(booking.reserved_seats.count).to eq 1
+      expect(booking.requested_seats.count).to eq 1
     end
 
-    it 'more than one seat can be reserved' do
+    it 'more than one seat can be requested' do
       booking = Booking.new(seat1, seat2)
-      # booking.add_to_reserve_list
-      expect(booking.reserved_seats.count).to eq 3
+      expect(booking.requested_seats.count).to eq 3
     end
 
   end
-
-
-
-
 end
