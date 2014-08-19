@@ -40,8 +40,8 @@ class Booking
   end
 
   def no_single_seat?
-    # no_single_seat_at_start_or_end_of_row?
-    true
+    no_single_seat_at_start_or_end_of_row?
+    # true
   end
 
   def no_single_seat_at_start_or_end_of_row?
