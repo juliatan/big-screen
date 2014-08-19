@@ -23,18 +23,6 @@ describe Theatre do
     expect(theatre.reserved_bookings.count).to eq 1
   end
 
-  it 'knows all of the first seats of each reserved booking' do
-    theatre.process(booking1)
-    theatre.process(booking2)
-    expect(theatre.first_seats_reserved).to eq [seat1, seat3]
-  end
-
-  it 'knows all of the last seats of each reserved booking' do
-    theatre.process(booking1)
-    theatre.process(booking2)
-    expect(theatre.last_seats_reserved).to eq [seat2, seat4]
-  end
-
   it 'knows whether two bookings are in the same row' do
     theatre.process(booking1)
     theatre.process(booking3)
