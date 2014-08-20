@@ -12,15 +12,19 @@ class Theatre
 
   def process(booking)
     bookings << booking
-    if valid? booking
-      booking.requested_seats.each do |requested_seat|
-        reserved_seats << requested_seat
-      end
-      reserved_bookings << booking
-    else
-      booking.invalid!
-      discarded_bookings << booking
+    valid?(booking) ? process_valid(booking) : process_invalid(booking)
+  end
+
+  def process_valid(booking)
+    booking.requested_seats.each do |requested_seat|
+      reserved_seats << requested_seat
     end
+    reserved_bookings << booking
+  end
+
+  def process_invalid(booking)
+    booking.invalid!
+    discarded_bookings << booking
   end
 
   def seat_taken?(array_of_seats)
@@ -60,7 +64,7 @@ class Theatre
     elsif booking.one_seat_from_aisle?
       seat_taken?(booking.adjacent_seats)
     else
-      return true
+      true
     end
   end
 
