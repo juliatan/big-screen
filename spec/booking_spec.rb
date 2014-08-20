@@ -25,7 +25,7 @@ describe Booking do
     end
 
     it 'can have more than one seat' do
-      expect(Booking.new(seat1, seat2).seat_count).to eq 2
+      expect(booking.seat_count).to eq 2
     end
 
     it 'has a valid status if it is valid' do

@@ -15,6 +15,4 @@ describe Seat do
     end
   end
 
-
-
 end
