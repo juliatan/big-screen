@@ -1,6 +1,7 @@
 class Theatre
 
-  attr_reader :reserved_seats, :bookings, :reserved_bookings, :discarded_bookings
+  attr_reader :reserved_seats, :bookings, :reserved_bookings,
+              :discarded_bookings
 
   def initialize
     @reserved_seats = []
