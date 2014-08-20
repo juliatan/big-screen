@@ -1,8 +1,7 @@
 class Booking
 
-  attr_reader :start_seat, :finish_seat
-  attr_accessor :status
-  
+  attr_reader :start_seat, :finish_seat, :status
+
   MAX_SEATS_PER_BOOKING = 6
   ZERO_INDEXED = 1
   NO_OF_SEATS_IN_ROW = 50
@@ -20,7 +19,7 @@ class Booking
   end
 
   def valid?
-    less_than_6_seats? && same_row? && no_single_seat?
+    less_than_6_seats? && same_row?
   end
 
   def invalid!
@@ -37,18 +36,6 @@ class Booking
 
   def same_row?
     start_seat.row == finish_seat.row
-  end
-
-  def no_single_seat?
-    # no_single_seat_at_start_or_end_of_row?
-    true
-  end
-
-  def no_single_seat_at_start_or_end_of_row?
-    # cannot start from second seat in row
-    start_seat.number != ZERO_INDEXED &&
-    # cannot end at second-last seat in row
-    finish_seat.number != NO_OF_SEATS_IN_ROW - ZERO_INDEXED - 1
   end
 
   def previous_seat
