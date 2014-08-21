@@ -18,8 +18,8 @@ determine the number of bookings which are rejected.
 
 The text file of bookings contains one booking per line, where a booking is 
 of the following form:
-  - (<id>,<index of first seat row>:<index of first seat within row>,
-  <index of last seat row>:<index of last seat within row>),
+  - (&lt;id&gt;,&lt;index of first seat row&gt;:&lt;index of first seat within 
+  row&gt;,&lt;index of last seat row&gt;:&lt;index of last seat within row&gt;),
 
 Rows and seats are both 0-indexed. Note the trailing comma is absent on the 
 final line.
